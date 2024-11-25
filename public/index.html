@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng dịch vụ Công an giao thông</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (tuỳ chọn) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+
+    <!-- Navbar Chính -->
+    <nav class="navbar navbar-expand-lg navbar-main">
+        <div class="container">
+            <a class="navbar-brand d-flex flex-column align-items-center" href="#">
+                <span>CỔNG DỊCH VỤ CÔNG</span>
+                <span class="text">BỘ CÔNG AN</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Đăng Nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Đăng Ký</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar Phụ -->
+    <nav class="navbar navbar-expand-lg navbar-secondary">
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSecondary">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Giới Thiệu</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Thủ tục hành chính</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Nộp hồ sơ trực tuyến</a>
+                    </li> -->
+                    <li class="nav-item active">
+                        <a class="nav-link " href="#">Tra cứu vi phạm</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Đánh giá</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="phananh.html">Phản ánh - Kiến nghị</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Hỗ trợ</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="w-100 position-relative" style="min-height: 330px;">
+        <img src="assets/images/sen.png" class="w-100 position-absolute" alt="Lotus" style="z-index: -10;">
+        <div class="container mt-4 d-flex ">
+            <div class="col-lg-5" style="color: #d71920; font-weight: 600;">
+                <div class="mb-2" style="font-size: 18px; font-weight: bold;">6 ĐIỀU BÁC HỒ DẠY CÔNG AN NHÂN DÂN</div>
+                <div>Đối với tự mình, phải cần, kiệm, liêm, chính</div>
+                <div>Đối với đồng sự, phải thân ái giúp đỡ</div>
+                <div>Đối với Chính phủ, phải tuyệt đối trung thành</div>
+                <div>Đối với nhân dân, phải kính trọng, lễ phép</div>
+                <div>Đối với công việc, phải tận tụy</div>
+                <div>Đối với địch, phải cương quyết, khôn khéo.</div>
+            </div>
+            <div class="col-lg-7 " style="font-size: 700;">
+                <h1>Giới thiệu về Cổng Dịch vụ Bộ Công an</h1>
+                <p>
+                    Hệ thống trực tuyến giúp người dân và doanh nghiệp tiếp cận các dịch vụ hành chính công do Bộ Công
+                    an quản lý một cách thuận tiện, nhanh chóng và minh bạch. Hệ thống này cung cấp các thông tin về thủ
+                    tục hành chính, dịch vụ công trực tuyến cũng như
+                    các hướng dẫn chi tiết để thực hiện các quy trình,
+                    nộp hồ sơ, và nhận kết quả trực tuyến.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="main-content container">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-1">
+                <div class="search-box text-center">
+                    <h3 class="mb-4">Tra cứu thông tin phương tiện vi phạm</h3>
+                    <form id="searchForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="biensoxe"
+                                placeholder="Nhập thông tin biển kiểm soát" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Tra cứu</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-3">
+                <div id="violationResults" class="row"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade mt-6" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Thông tin thanh toán</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col text-center">
+                            <img src="/viphamgiaothong/public/assets/images/vnp.jpg" alt="VNPay" style="height: 60px;">
+                            <p class="mt-2">Giao dịch hết hạn sau <span id="countdown">08:00</span> phút</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 p-3 border rounded shadow-sm">
+                            <h6 class="fw-bold mb-3">Thông tin đơn hàng</h6>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><strong>Mã lỗi vi phạm:</strong> <span id="violation-id"
+                                        class="text-danger"></span></li>
+                                <li class="mb-2"><strong>Số tiền thanh toán:</strong> <span id="violation-amount"
+                                        class="text-primary"></span></li>
+                                <li class="mb-2"><strong>Phí giao dịch:</strong> <span class="text-success">0 VND</span>
+                                </li>
+                                <li class="mb-2"><strong>Mã đơn hàng:</strong> <span class="text-muted"
+                                        id="order-id"></span></li>
+                                <li class="mb-2"><strong>Nhà cung cấp:</strong> <span class="text-info">Ngân hàng Bộ
+                                        Công An</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 p-3 border rounded shadow-sm text-center">
+                            <h6>Mã QR qua ứng dụng Ngân hàng/ Ví điện tử</h6>
+                            <img src="/viphamgiaothong/public/assets/images/qrvnp.png" alt="QR Code"
+                                class="img-fluid mb-3" style="height: 200px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-success" id="confirm-payment-btn">Xác nhận thanh
+                                toán</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 service-item">
+                <img src="assets/images/login.svg" alt="Icon 1">
+                <p class="service-text">Đăng ký và được cấp ngay một tài khoản của Cổng dịch vụ công Quốc gia để đăng
+                    nhập;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/timkiem.svg" alt="Icon 2">
+                <p class="service-text">Tra cứu thông tin, dịch vụ công các ngành, lĩnh vực, các địa phương tại Cơ sở dữ
+                    liệu quốc gia về thủ tục hành chính; Gửi phản ánh kiến nghị liên quan đến việc giải quyết thủ tục
+                    hành chính, dịch vụ công;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/denghi.svg" alt="Icon 3">
+                <p class="service-text">Đề nghị hỗ trợ thực hiện thủ tục hành chính, dịch vụ công qua <strong>Tổng đài
+                        điện thoại 18001096</strong> hoặc trực tuyến tại mục Hỗ trợ;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/denghi.svg" alt="Icon 4">
+                <p class="service-text">Nhận thông báo về kết quả xử lý hồ sơ qua hệ thống một cách kịp thời;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/truyvan.svg" alt="Icon 5">
+                <p class="service-text">Nhận thông báo về kết quả xử lý hồ sơ qua hệ thống một cách kịp thời;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/timkiem.svg" alt="Icon 6">
+                <p class="service-text">Nhận thông báo về kết quả xử lý hồ sơ qua hệ thống một cách kịp thời;</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <!-- Phần trên -->
+        <div class="footer-top">
+
+            <h4 class="mt-3">CỔNG DỊCH VỤ CÔNG - BỘ CÔNG AN</h4>
+            <div class="block"></div>
+            <p>Địa chỉ: 30 Trần Bình Trọng - Nguyễn Du - Hai Bà Trưng - Hà Nội</p>
+            <p>Email: vanphongbo@mps.gov.vn</p>
+        </div>
+        <div class="line bg-warning"></div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-5">
+                        <p>© 2021 Cổng dịch vụ công - Bộ Công an. All Rights Reserved.</p>
+                        <p>© Tôi đã sử dụng lại thông tin từ "Cổng Dịch vụ công - Bộ Công an. Không nhằm mục đích nào vi
+                            phạm pháp luật</p>
+                    </div>
+                    <div class="col-4">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.609033782211!2d105.77732827535584!3d21.048323980606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9025956edf%3A0xa0cfb660a0d7b5cf!2sMinistry%20of%20Public%20Security!5e0!3m2!1sen!2s!4v1729844393950!5m2!1sen!2s"
+                            style="border-radius: 10px; width: 100%; height: auto;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="col-2 d-flex gap-2" style="flex-direction: column;">
+                        <a href="https://www.facebook.com/mps.gov" target="_blank">
+                            <img class="w-100 h-auto " src="/viphamgiaothong/public/assets/images/fanpage.png"
+                                height="50" alt="Facebook Fanpage" style="border-radius: 10px;">
+                        </a>
+                        <a href="https://tinnhiemmang.vn/danh-ba-tin-nhiem/dichvucongbocongangovvn-1698811213">
+                            <img class="w-100 h-auto " src="/viphamgiaothong/public/assets/images/cer.png" height="35"
+                                alt="" style="border-radius: 10px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Lấy thông tin vi phạm khi trang được tải lại (nếu có biển số)
+            const biensoxe = $('#biensoxe').val().trim();
+            if (biensoxe) {
+                loadViolationData(biensoxe);
+            }
+
+            // Hàm load thông tin vi phạm
+            function loadViolationData(biensoxe) {
+                $.ajax({
+                    url: `http://localhost/viphamgiaothong/api/get_Violation.php?biensoxe=${encodeURIComponent(biensoxe)}`,
+                    method: 'GET',
+                    success: function (data) {
+                        const violations = data;
+                        $('#violationResults').empty(); // Xóa kết quả cũ
+
+                        if (violations.length > 0) {
+                            violations.forEach((violation, index) => {
+                                $('#violationResults').append(`
+                            <div class="col-lg-12 col-md-12">
+                                <div class="result-vihecal">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <h5>Thông tin vi phạm</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text"><strong>Biển kiểm soát:</strong> ${violation.biensoxe}</p>
+                                            <p class="card-text"><strong>Loại phương tiện:</strong> ${violation.ten_phuongtien}</p>
+                                            <p class="card-text"><strong>Ngày vi phạm:</strong> ${violation.ngayvipham}</p>
+                                            <p class="card-text"><strong>Địa điểm vi phạm:</strong> ${violation.diadiemvipham}</p>
+                                            <p class="card-text"><strong>Lỗi vi phạm:</strong> ${violation.ten_loivipham}</p>
+                                            <p class="card-text"><strong>Mức phạt:</strong> ${parseInt(violation.tienphat).toLocaleString('vi-VN')} VND</p>
+                                            <p class="card-text-status"><strong>Trạng thái:</strong> ${violation.trangthaithanhtoan ? 'Đã thanh toán' : 'Chưa thanh toán'}</p>
+                                            ${!violation.trangthaithanhtoan ? `
+                                                <button class="btn btn-primary payment-btn" data-bs-toggle="modal" data-bs-target="#paymentModal" data-index="${index}">
+                                                    Thanh toán
+                                                </button>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                            });
+
+                            // Xử lý khi người dùng nhấn "Thanh toán"
+                            $('.payment-btn').click(function () {
+                                const violationIndex = $(this).data('index');
+                                const selectedViolation = violations[violationIndex];
+
+                                $('#violation-id').text(selectedViolation.ma);
+                                $('#violation-amount').text(`${parseInt(selectedViolation.tienphat).toLocaleString('vi-VN')} VND`);
+                                $('#order-id').text(Math.floor(100000000 + Math.random() * 900000000));
+                            });
+                        } else {
+                            $('#violationResults').append(`
+                        <div class="card bg-warning">
+                            <p class="text-center">Không tìm thấy thông tin vi phạm cho biển số ${biensoxe}.</p>
+                        </div>
+                    `);
+                        }
+                    },
+                    error: function () {
+                        alert('Lỗi khi gọi API. Vui lòng thử lại sau.');
+                    }
+                });
+            }
+
+            // Xử lý sự kiện khi người dùng tìm kiếm
+            $('#searchForm').submit(function (event) {
+                event.preventDefault(); // Ngăn form reload
+
+                const biensoxe = $('#biensoxe').val().trim();
+                if (biensoxe) {
+                    loadViolationData(biensoxe); // Gọi API lấy thông tin vi phạm
+                }
+            });
+
+            // Xử lý thanh toán
+            $('#confirm-payment-btn').click(function () {
+                const maPhieuViPham = $('#violation-id').text(); // Lấy mã phiếu vi phạm từ nội dung phần tử
+                $.ajax({
+                    url: 'http://localhost/viphamgiaothong/api/Payment.php',
+                    type: 'POST',
+                    data: { ma: maPhieuViPham },
+                    success: function (response) {
+                        if (response.success) {
+                            const paymentModal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
+                            paymentModal.hide();
+                            // Cập nhật lại thông tin vi phạm
+                            const biensoxe = $('#biensoxe').val().trim();
+                            loadViolationData(biensoxe); // Gọi lại API để cập nhật trạng thái thanh toán
+                        } else {
+                            alert('Lỗi: ' + response.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Đã xảy ra lỗi khi gọi API.');
+                    }
+                });
+            });
+        });
+
+
+    </script>
+    <script src="js/countbill.js"></script>
+</body>
+
+</html>

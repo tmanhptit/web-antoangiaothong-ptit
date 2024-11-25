@@ -1,0 +1,155 @@
+CREATE DATABASE IF NOT EXISTS ViolationManagement;
+USE ViolationManagement;
+
+CREATE TABLE users (
+    ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(10) UNIQUE,
+    password VARCHAR(255)
+);
+CREATE TABLE nguoidung (
+    ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    sochungminhnhandan INT(10) UNIQUE,
+    ten VARCHAR(255),
+    ngaysinh DATE,
+    diachi VARCHAR(255),
+    sdt VARCHAR(255),
+    gioitinh VARCHAR(255)
+);
+
+CREATE TABLE loivipham (
+    ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    ma VARCHAR(255) UNIQUE,
+    ten VARCHAR(255),
+    tienphat DOUBLE,
+    luatvipham VARCHAR(255)
+);
+
+
+CREATE TABLE phuongtien (
+    ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    ma VARCHAR(255) UNIQUE,
+    ten VARCHAR(255),
+    hang VARCHAR(255),
+    ngaysanxuat DATE
+);
+
+CREATE TABLE phuongtiennguoidung (
+    ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    biensoxe VARCHAR(255) UNIQUE,
+    ngaylanbanh DATE,
+    diachidangkiem VARCHAR(255),
+    phuongtienID INT(10),
+    nguoidungID INT(10),
+    FOREIGN KEY (phuongtienID) REFERENCES phuongtien(ID),
+    FOREIGN KEY (nguoidungID) REFERENCES nguoidung(ID)
+);
+
+
+CREATE TABLE phieuvipham (
+    ID INT(10) AUTO_INCREMENT PRIMARY KEY,
+    ma VARCHAR(255) UNIQUE,
+    trangthaithanhtoan BIT,
+    ngayvipham DATE,
+    diadiemvipham VARCHAR(255),
+    diadiemxuly VARCHAR(255),
+    loiviphamID INT(10),
+    phuongtiennguoidungID INT(10),
+    FOREIGN KEY (loiviphamID) REFERENCES loivipham(ID),
+    FOREIGN KEY (phuongtiennguoidungID) REFERENCES phuongtiennguoidung(ID)
+);
+
+
+CREATE TABLE feedbacks (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    citizen_type ENUM('Người dân', 'Doanh nghiệp', 'Tổ chức', 'Cơ quan nhà nước') NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    cccd VARCHAR(12) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    unit_receive VARCHAR(255) NOT NULL,
+    attachment VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Chưa xử lý', 'Đã xử lý') DEFAULT 'Chưa xử lý'
+);
+
+
+INSERT INTO nguoidung (sochungminhnhandan, ten, ngaysinh, diachi, sdt, gioitinh) VALUES 
+(123456789, 'Nguyen Van A', '1990-01-01', '123 Đường A, Quận 1, TP.HCM', '0123456789', 'Nam'),
+(987654321, 'Tran Thi B', '1985-05-05', '456 Đường B, Quận 2, TP.HCM', '0987654321', 'Nữ'),
+(456789123, 'Le Van C', '2000-10-10', '789 Đường C, Quận 3, TP.HCM', '0234567890', 'Nam');
+
+INSERT INTO loivipham (ma, ten, tienphat, luatvipham) VALUES 
+('VP001', 'Vượt đèn đỏ', 500000, 'Điều 5, Luật Giao Thông'),
+('VP002', 'Đi quá tốc độ', 300000, 'Điều 6, Luật Giao Thông'),
+('VP003', 'Không đội mũ bảo hiểm', 200000, 'Điều 7, Luật Giao Thông');
+
+INSERT INTO phuongtien (ma, ten, hang, ngaysanxuat) VALUES 
+('PT001', 'Xe máy Honda', 'Honda', '2020-01-01'),
+('PT002', 'Xe ô tô Toyota', 'Toyota', '2018-06-15'),
+('PT003', 'Xe đạp điện', 'VinFast', '2021-03-10');
+
+INSERT INTO phuongtiennguoidung (biensoxe, ngaylanbanh, diachidangkiem, phuongtienID, nguoidungID) VALUES 
+('59F1-12345', '2020-01-15', 'Trạm đăng kiểm số 1', 1, 1),
+('59F2-67890', '2018-07-20', 'Trạm đăng kiểm số 2', 2, 2),
+('59F3-54321', '2021-04-05', 'Trạm đăng kiểm số 3', 3, 3);
+
+INSERT INTO phieuvipham (ma, trangthaithanhtoan, ngayvipham, diadiemvipham, diadiemxuly, loiviphamID, phuongtiennguoidungID) VALUES 
+('VP001-20230101', 0, '2023-01-01', 'Ngã tư A', 'Công an Quận 1', 1, 1),
+('VP002-20230102', 1, '2023-01-02', 'Đường B', 'Công an Quận 2', 2, 2),
+('VP003-20230103', 0, '2023-01-03', 'Đường C', 'Công an Quận 3', 3, 3);
+
+INSERT INTO phieuvipham (ma, trangthaithanhtoan, ngayvipham, diadiemvipham, diadiemxuly, loiviphamID, phuongtiennguoidungID)
+VALUES
+('P0001', 1, '2024-10-01', 'Hà Nội, Quận Hoàn Kiếm, Phố Hàng Gai', 'Hà Nội, Quận Hoàn Kiếm, Phố Tràng Thi', 27, 34),
+('P0002', 0, '2024-10-02', 'Hồ Chí Minh, Quận 1, Phố Nguyễn Huệ', 'Hồ Chí Minh, Quận 1, Phố Lê Lợi', 28, 35),
+('P0003', 1, '2024-10-03', 'Đà Nẵng, Quận Hải Châu, Phố Phan Châu Trinh', 'Đà Nẵng, Quận Sơn Trà, Phố Võ Nguyên Giáp', 29, 36),
+('P0004', 0, '2024-10-04', 'Cần Thơ, Quận Ninh Kiều, Phố Mậu Thân', 'Cần Thơ, Quận Bình Thủy, Phố Lê Lợi', 30, 37),
+('P0005', 1, '2024-10-05', 'An Giang, Thành phố Long Xuyên, Phố Lý Thái Tổ', 'An Giang, Thành phố Châu Đốc, Phố Nguyễn Huệ', 31, 38),
+('P0006', 0, '2024-10-06', 'Nha Trang, Thành phố Nha Trang, Phố Nguyễn Tất Thành', 'Nha Trang, Thành phố Cam Ranh, Phố Trần Phú', 32, 39),
+('P0007', 1, '2024-10-07', 'Quảng Ninh, Thành phố Hạ Long, Phố Trần Hưng Đạo', 'Quảng Ninh, Thành phố Uông Bí, Phố Lý Thường Kiệt', 33, 40),
+('P0008', 0, '2024-10-08', 'Quảng Bình, Thành phố Đồng Hới, Phố Hùng Vương', 'Quảng Bình, Quận Ba Đồn, Phố Lê Lợi', 34, 41),
+('P0009', 1, '2024-10-09', 'Hải Phòng, Quận Ngô Quyền, Phố Trần Phú', 'Hải Phòng, Quận Lê Chân, Phố Quang Trung', 35, 42),
+('P0010', 0, '2024-10-10', 'Thanh Hóa, Thành phố Thanh Hóa, Phố Lê Hoàn', 'Thanh Hóa, Thành phố Sầm Sơn, Phố Trần Hưng Đạo', 36, 43),
+('P0011', 1, '2024-10-11', 'Bình Dương, Thành phố Thủ Dầu Một, Phố Lê Duẩn', 'Bình Dương, Thành phố Dĩ An, Phố Nguyễn Thị Minh Khai', 37, 44),
+('P0012', 0, '2024-10-12', 'Vũng Tàu, Thành phố Vũng Tàu, Phố Nguyễn An Ninh', 'Vũng Tàu, Thành phố Bà Rịa, Phố Nguyễn Trãi', 38, 45),
+('P0013', 1, '2024-10-13', 'Bến Tre, Thành phố Bến Tre, Phố Nguyễn Văn Cừ', 'Bến Tre, Huyện Châu Thành, Phố Lê Quý Đôn', 39, 46),
+('P0014', 0, '2024-10-14', 'Hưng Yên, Thành phố Hưng Yên, Phố Trần Hưng Đạo', 'Hưng Yên, Huyện Mỹ Hào, Phố Lê Lai', 40, 47),
+('P0015', 1, '2024-10-15', 'Sóc Trăng, Thành phố Sóc Trăng, Phố Lê Thị Hồng Gấm', 'Sóc Trăng, Huyện Kế Sách, Phố Nguyễn Tất Thành', 41, 48),
+('P0016', 0, '2024-10-16', 'Lào Cai, Thành phố Lào Cai, Phố Lý Thường Kiệt', 'Lào Cai, Huyện Bát Xát, Phố Nguyễn Huệ', 42, 49),
+('P0017', 1, '2024-10-17', 'Nam Định, Thành phố Nam Định, Phố Trần Phú', 'Nam Định, Thành phố Giao Thủy, Phố Hoàng Diệu', 43, 50),
+('P0018', 0, '2024-10-18', 'Phú Thọ, Thành phố Việt Trì, Phố Nguyễn Tất Thành', 'Phú Thọ, Huyện Phù Ninh, Phố Lê Hồng Phong', 44, 51),
+('P0019', 1, '2024-10-19', 'Bắc Ninh, Thành phố Bắc Ninh, Phố Nguyễn Trãi', 'Bắc Ninh, Huyện Gia Bình, Phố Lê Duẩn', 45, 52),
+('P0020', 0, '2024-10-20', 'Hà Giang, Thành phố Hà Giang, Phố Trần Phú', 'Hà Giang, Huyện Quang Bình, Phố Lý Thường Kiệt', 46, 53),
+('P0021', 1, '2024-10-21', 'Lạng Sơn, Thành phố Lạng Sơn, Phố Nguyễn Du', 'Lạng Sơn, Huyện Cao Lộc, Phố Lê Quý Đôn', 27, 54),
+('P0022', 0, '2024-10-22', 'Vĩnh Long, Thành phố Vĩnh Long, Phố Lê Văn Tám', 'Vĩnh Long, Huyện Long Hồ, Phố Nguyễn Hữu Cảnh', 28, 55),
+('P0023', 1, '2024-10-23', 'Yên Bái, Thành phố Yên Bái, Phố Nguyễn Thái Học', 'Yên Bái, Huyện Văn Yên, Phố Lý Thường Kiệt', 29, 56),
+('P0024', 0, '2024-10-24', 'Tuyên Quang, Thành phố Tuyên Quang, Phố Lý Thái Tổ', 'Tuyên Quang, Huyện Sơn Dương, Phố Trần Hưng Đạo', 30, 57),
+('P0025', 1, '2024-10-25', 'Gia Lai, Thành phố Pleiku, Phố Lê Duẩn', 'Gia Lai, Huyện Ia Grai, Phố Trần Phú', 31, 58),
+('P0026', 0, '2024-10-26', 'Đắk Lắk, Thành phố Buôn Ma Thuột, Phố Nguyễn Tất Thành', 'Đắk Lắk, Huyện Krông Pắc, Phố Trần Quang Khải', 32, 34),
+('P0027', 1, '2024-10-27', 'Kon Tum, Thành phố Kon Tum, Phố Trần Hưng Đạo', 'Kon Tum, Huyện Đăk Hà, Phố Nguyễn Văn Linh', 33, 35),
+('P0028', 0, '2024-10-28', 'Lâm Đồng, Thành phố Đà Lạt, Phố Phan Đình Phùng', 'Lâm Đồng, Huyện Đức Trọng, Phố Hoàng Văn Thụ', 34, 36),
+('P0029', 1, '2024-10-29', 'Bắc Kạn, Thành phố Bắc Kạn, Phố Lý Thường Kiệt', 'Bắc Kạn, Huyện Chợ Mới, Phố Phùng Chí Kiên', 35, 37),
+('P0037', 1, '2024-11-01', 'Hà Nội, Quận Ba Đình, Phố Đội Cấn', 'Hà Nội, Quận Hai Bà Trưng, Phố Bạch Mai', 33, 45),
+('P0038', 0, '2024-11-02', 'Hồ Chí Minh, Quận 7, Đường Nguyễn Văn Linh', 'Hồ Chí Minh, Quận Bình Thạnh, Phố Xô Viết Nghệ Tĩnh', 41, 50),
+('P0039', 1, '2024-11-03', 'Đà Nẵng, Quận Thanh Khê, Phố Điện Biên Phủ', 'Đà Nẵng, Quận Sơn Trà, Phố Ngô Quyền', 28, 34),
+('P0040', 0, '2024-11-04', 'Cần Thơ, Quận Bình Thủy, Phố Võ Văn Kiệt', 'Cần Thơ, Quận Ninh Kiều, Phố Đề Thám', 40, 56),
+('P0041', 1, '2024-11-05', 'Hải Phòng, Quận Hồng Bàng, Phố Quang Trung', 'Hải Phòng, Quận Lê Chân, Phố Trần Nguyên Hãn', 30, 38),
+('P0042', 0, '2024-11-06', 'Quảng Ninh, Thành phố Hạ Long, Phố Hoàng Quốc Việt', 'Quảng Ninh, Thành phố Uông Bí, Phố Lý Thường Kiệt', 35, 42),
+('P0043', 1, '2024-11-07', 'Bình Định, Thành phố Quy Nhơn, Đường An Dương Vương', 'Bình Định, Huyện Tuy Phước, Đường Quốc Lộ 1', 29, 47),
+('P0044', 0, '2024-11-08', 'Thanh Hóa, Thành phố Thanh Hóa, Phố Tô Hiến Thành', 'Thanh Hóa, Thành phố Sầm Sơn, Phố Nguyễn Du', 37, 39),
+('P0045', 1, '2024-11-09', 'Lào Cai, Thành phố Lào Cai, Phố Trần Phú', 'Lào Cai, Huyện Bắc Hà, Phố Nguyễn Văn Cừ', 31, 53),
+('P0046', 0, '2024-11-10', 'Ninh Thuận, Thành phố Phan Rang - Tháp Chàm, Đường 16/4', 'Ninh Thuận, Huyện Ninh Sơn, Đường Phạm Ngọc Thạch', 27, 44),
+('P0047', 1, '2024-11-11', 'Bắc Giang, Thành phố Bắc Giang, Phố Lê Lợi', 'Bắc Giang, Huyện Lạng Giang, Phố Trần Nhật Duật', 44, 36),
+('P0048', 0, '2024-11-12', 'Tây Ninh, Thành phố Tây Ninh, Đường Cách Mạng Tháng 8', 'Tây Ninh, Huyện Gò Dầu, Đường Nguyễn Trãi', 46, 55),
+('P0049', 1, '2024-11-13', 'Khánh Hòa, Thành phố Nha Trang, Phố Hùng Vương', 'Khánh Hòa, Thành phố Cam Ranh, Phố Trần Phú', 34, 40),
+('P0050', 0, '2024-11-14', 'Bình Phước, Thành phố Đồng Xoài, Phố Nguyễn Huệ', 'Bình Phước, Huyện Chơn Thành, Phố Lê Thị Hồng Gấm', 32, 54),
+('P0051', 1, '2024-11-15', 'Thừa Thiên Huế, Thành phố Huế, Đường Lê Lợi', 'Thừa Thiên Huế, Huyện Hương Thủy, Đường Nguyễn Công Trứ', 38, 48),
+('P0052', 0, '2024-11-16', 'Hà Tĩnh, Thành phố Hà Tĩnh, Phố Trần Phú', 'Hà Tĩnh, Huyện Cẩm Xuyên, Phố Nguyễn Văn Linh', 30, 46),
+('P0053', 1, '2024-11-17', 'Quảng Nam, Thành phố Tam Kỳ, Phố Nguyễn Du', 'Quảng Nam, Huyện Điện Bàn, Phố Trần Quý Cáp', 39, 52),
+('P0054', 0, '2024-11-18', 'An Giang, Thành phố Long Xuyên, Phố Nguyễn Trãi', 'An Giang, Thành phố Châu Đốc, Phố Phạm Ngọc Thạch', 42, 49),
+('P0055', 1, '2024-11-19', 'Hòa Bình, Thành phố Hòa Bình, Đường Cù Chính Lan', 'Hòa Bình, Huyện Lương Sơn, Đường Quốc Lộ 6', 43, 37),
+('P0056', 0, '2024-11-20', 'Quảng Ngãi, Thành phố Quảng Ngãi, Phố Quang Trung', 'Quảng Ngãi, Huyện Tư Nghĩa, Phố Trần Hưng Đạo', 41, 35);
+
+30A-12345

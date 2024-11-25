@@ -1,0 +1,192 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+}
+
+/* Navbar chính */
+.navbar-main {
+    background-color: #4B9CD3;
+    background-image: url('../assets/images/bg-bca-footer-1.png');
+    /* Đi lên một cấp thư mục */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 150px;
+}
+
+.line {
+    background-color: #d21010;
+    height: 1.5px;
+}
+
+.navbar-main .navbar-brand {
+    color: #750303;
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+
+.navbar-main .nav-link {
+    color: #660e0e !important;
+    margin-left: 15px;
+    text-align: center;
+    font: 1.1rem sans-serif;
+}
+
+.navbar-main .nav-link:hover {
+    color: #420303 !important;
+}
+
+
+/* Navbar phụ */
+/* CSS Tùy Chỉnh cho Navbar */
+.navbar-secondary {
+    background-color: #d21010;
+    /* Màu nền cho navbar phụ */
+    height: 70px;
+    /* Chiều cao của navbar phụ */
+}
+
+.navbar-secondary .nav-link {
+    color: #f7ecec;
+    /* Màu chữ mặc định */
+    transition: all 0.3s ease;
+    /* Hiệu ứng chuyển đổi mượt mà */
+}
+
+.navbar-secondary .nav-link:hover {
+    color: #280f6d;
+    /* Màu chữ khi hover */
+    background-color: rgba(241, 196, 15, 0.2);
+    /* Màu nền khi hover */
+    border-radius: 5px;
+    /* Bo tròn góc */
+}
+
+.navbar-secondary .nav-link.active {
+    color: #2818a1;
+    /* Màu chữ cho liên kết active */
+    background-color: rgba(241, 196, 15, 0.2);
+    /* Màu nền cho liên kết active */
+    border-radius: 5px;
+    /* Bo tròn góc */
+}
+
+.nav-item {
+    margin-left: 10px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    margin-left: 10px;
+    font: 1.15em sans-serif;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 40px 0;
+}
+
+.search-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input,
+.search-box select,
+.search-box button {
+    border-radius: 5px;
+}
+
+.search-box button {
+    background-color: #4B9CD3;
+    border: none;
+}
+
+.search-box button:hover {
+    background-color: #3a7bbf;
+}
+
+.card-text-status {
+    color: #d21010;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background-color: #fff3f3;
+    padding: 10px;
+    border: 2px solid #d21010;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: #4B9CD3;
+    background-image: url('../assets/images/bg-bca-footer-1.png');
+    /* Đi lên một cấp thư mục */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 300px;
+
+}
+
+.footer .container {
+    width: 100%;
+}
+
+.footer-top {
+    text-align: center;
+    height: 100;
+}
+
+.footer-top img {
+    margin-bottom: 15px;
+}
+
+.footer-bottom {
+    background-color: #d21010;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 20px 0 20px 0;
+    color: #fff;
+}
+
+.footer-bottom-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+
+.footer-bottom .footer-image img {
+    max-width: 150px;
+    height: auto;
+}
+
+.block {
+    margin-top: 170px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom .contact,
+    .footer-bottom .footer-image {
+        margin-bottom: 20px;
+    }
+}

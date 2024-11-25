@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Phản Ánh Kiến Nghị</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng dịch vụ Công an giao thông</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (tuỳ chọn) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+
+    <!-- Navbar Chính -->
+    <nav class="navbar navbar-expand-lg navbar-main">
+        <div class="container">
+            <a class="navbar-brand d-flex flex-column align-items-center" href="#">
+                <span>CỔNG DỊCH VỤ CÔNG</span>
+                <span class="text">BỘ CÔNG AN</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Đăng Nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Đăng Ký</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar Phụ -->
+    <nav class="navbar navbar-expand-lg navbar-secondary">
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSecondary">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Giới Thiệu</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Thủ tục hành chính</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Nộp hồ sơ trực tuyến</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link " href="index.html">Tra cứu vi phạm</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Đánh giá</a>
+                    </li> -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Phản ánh - Kiến nghị</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Hỗ trợ</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="w-100 position-relative" style="min-height: 330px;">
+        <img src="assets/images/sen.png" class="w-100 position-absolute" alt="Lotus" style="z-index: -10;">
+        <div class="container mt-4 d-flex ">
+            <div class="col-lg-5" style="color: #d71920; font-weight: 600;">
+                <div class="mb-2" style="font-size: 18px; font-weight: bold;">6 ĐIỀU BÁC HỒ DẠY CÔNG AN NHÂN DÂN</div>
+                <div>Đối với tự mình, phải cần, kiệm, liêm, chính</div>
+                <div>Đối với đồng sự, phải thân ái giúp đỡ</div>
+                <div>Đối với Chính phủ, phải tuyệt đối trung thành</div>
+                <div>Đối với nhân dân, phải kính trọng, lễ phép</div>
+                <div>Đối với công việc, phải tận tụy</div>
+                <div>Đối với địch, phải cương quyết, khôn khéo.</div>
+            </div>
+            <div class="col-lg-7 " style="font-size: 700;">
+                <h1>Giới thiệu về Cổng Dịch vụ Bộ Công an</h1>
+                <p>
+                    Hệ thống trực tuyến giúp người dân và doanh nghiệp tiếp cận các dịch vụ hành chính công do Bộ Công
+                    an quản lý một cách thuận tiện, nhanh chóng và minh bạch. Hệ thống này cung cấp các thông tin về thủ
+                    tục hành chính, dịch vụ công trực tuyến cũng như
+                    các hướng dẫn chi tiết để thực hiện các quy trình,
+                    nộp hồ sơ, và nhận kết quả trực tuyến.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="main-content container mt-5 mb-5 border-radius">
+        <div class="row justify-content-center">
+            <div class="col-7 " style="border: 1px solid #000; border-radius: 10px; padding: 30px">
+                <h2>Gửi Phản Ánh Kiến Nghị</h2>
+                <form id="feedback-form" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="citizenType" class="form-label">Đối tượng phản ánh</label>
+                        <select class="form-select" id="citizenType" name="citizen_type" required>
+                            <option value="Người dân">Người dân</option>
+                            <option value="Doanh nghiệp">Doanh nghiệp</option>
+                            <option value="Tổ chức">Tổ chức</option>
+                            <option value="Cơ quan nhà nước">Cơ quan nhà nước</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cccd" class="form-label">Số CCCD/CMND</label>
+                        <input type="text" class="form-control" id="cccd" name="cccd" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">PAKN về việc</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Nội dung</label>
+                        <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="unit" class="form-label">Chọn đơn vị tiếp nhận</label>
+                        <input type="text" class="form-control" id="unit" name="unit_receive" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="attachment" class="form-label">Tài liệu đính kèm</label>
+                        <input type="file" class="form-control" id="attachment" name="attachment">
+                    </div>
+                    <!-- 
+                <div class="mb-3">
+                    <label for="captcha" class="form-label">Mã bảo mật</label>
+                    <input type="text" class="form-control" id="captcha" name="captcha" required>
+                </div> -->
+
+                    <button type="submit" class="btn btn-primary">Gửi phản ánh</button>
+                    <button type="reset" class="btn btn-secondary">Nhập lại</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 service-item">
+                <img src="assets/images/login.svg" alt="Icon 1">
+                <p class="service-text">Đăng ký và được cấp ngay một tài khoản của Cổng dịch vụ công Quốc gia để đăng
+                    nhập;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/timkiem.svg" alt="Icon 2">
+                <p class="service-text">Tra cứu thông tin, dịch vụ công các ngành, lĩnh vực, các địa phương tại Cơ sở dữ
+                    liệu quốc gia về thủ tục hành chính; Gửi phản ánh kiến nghị liên quan đến việc giải quyết thủ tục
+                    hành chính, dịch vụ công;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/denghi.svg" alt="Icon 3">
+                <p class="service-text">Đề nghị hỗ trợ thực hiện thủ tục hành chính, dịch vụ công qua <strong>Tổng đài
+                        điện thoại 18001096</strong> hoặc trực tuyến tại mục Hỗ trợ;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/denghi.svg" alt="Icon 4">
+                <p class="service-text">Nhận thông báo về kết quả xử lý hồ sơ qua hệ thống một cách kịp thời;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/truyvan.svg" alt="Icon 5">
+                <p class="service-text">Nhận thông báo về kết quả xử lý hồ sơ qua hệ thống một cách kịp thời;</p>
+            </div>
+            <div class="col-md-4 service-item">
+                <img src="assets/images/timkiem.svg" alt="Icon 6">
+                <p class="service-text">Nhận thông báo về kết quả xử lý hồ sơ qua hệ thống một cách kịp thời;</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <!-- Phần trên -->
+        <div class="footer-top">
+
+            <h4 class="mt-3">CỔNG DỊCH VỤ CÔNG - BỘ CÔNG AN</h4>
+            <div class="block"></div>
+            <p>Địa chỉ: 30 Trần Bình Trọng - Nguyễn Du - Hai Bà Trưng - Hà Nội</p>
+            <p>Email: vanphongbo@mps.gov.vn</p>
+        </div>
+        <div class="line bg-warning"></div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-5">
+                        <p>© 2021 Cổng dịch vụ công - Bộ Công an. All Rights Reserved.</p>
+                        <p>© Tôi đã sử dụng lại thông tin từ "Cổng Dịch vụ công - Bộ Công an. Không nhằm mục đích nào vi
+                            phạm pháp luật</p>
+                    </div>
+                    <div class="col-4">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.609033782211!2d105.77732827535584!3d21.048323980606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9025956edf%3A0xa0cfb660a0d7b5cf!2sMinistry%20of%20Public%20Security!5e0!3m2!1sen!2s!4v1729844393950!5m2!1sen!2s"
+                            style="border-radius: 10px; width: 100%; height: auto;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="col-2 d-flex gap-2" style="flex-direction: column;">
+                        <a href="https://www.facebook.com/mps.gov" target="_blank">
+                            <img class="w-100 h-auto " src="/viphamgiaothong/public/assets/images/fanpage.png"
+                                height="50" alt="Facebook Fanpage" style="border-radius: 10px;">
+                        </a>
+                        <a href="https://tinnhiemmang.vn/danh-ba-tin-nhiem/dichvucongbocongangovvn-1698811213">
+                            <img class="w-100 h-auto " src="/viphamgiaothong/public/assets/images/cer.png" height="35"
+                                alt="" style="border-radius: 10px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+        $('#feedback-form').on('submit', function(e) {
+            e.preventDefault(); // Ngăn chặn form submit mặc định
+
+            var formData = new FormData(this); // Tạo FormData từ form hiện tại
+
+            $.ajax({
+                url: 'http://localhost/viphamgiaothong/api/create_feedback.php', // URL API của bạn
+                type: 'POST', // Gửi phương thức POST
+                data: formData, // Dữ liệu form
+                processData: false, // Đảm bảo không xử lý dữ liệu
+                contentType: false, // Đảm bảo không cài đặt Content-Type
+                success: function(response) {
+                    // Nếu thành công
+                    alert('Phản ánh kiến nghị của bạn đã được gửi thành công!');
+                    $('#feedback-form')[0].reset(); // Reset form sau khi gửi thành công
+                },
+                error: function() {
+                    // Nếu có lỗi
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

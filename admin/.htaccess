@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Kiểm tra nếu không có session hoặc session không chứa 'username'
+RewriteCond %{REQUEST_URI} ^/viphamgiaothong/admin/ [NC]  # Kiểm tra đường dẫn chính xác tới thư mục admin
+RewriteCond %{HTTP_COOKIE} !^.*PHPSESSID=.*$ [NC]    # Kiểm tra nếu không có cookie session
+RewriteRule ^(.*)$ ../config/login_required.html [L]   # Chuyển hướng tới trang HTML thông báo nếu không có session
+ErrorDocument 404 /viphamgiaothong/config/404.html
